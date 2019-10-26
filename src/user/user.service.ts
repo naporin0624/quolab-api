@@ -24,4 +24,11 @@ export class UserService {
     });
     return user.save();
   }
+
+  async joinLab(email: string, labId: string) {
+    const user = await this.findOne(email);
+    user.labId = labId;
+    user.save();
+    return user;
+  }
 }
