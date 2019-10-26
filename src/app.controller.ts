@@ -44,7 +44,8 @@ export class AppController {
   @UseGuards(AuthGuard("local"))
   @Post("signin")
   async login(@Body() userDto: UserDto) {
-    return this.authService.login(userDto);
+    const user = await this.userService.findOne(userDto.email)
+    return this.authService.login(user);
   }
 
   @UseGuards(AuthGuard("jwt"))

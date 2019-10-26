@@ -22,7 +22,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: UserDto) {
+  async login(user: User) {
     const payload = { email: user.email, sub: user._id };
     return {
       // eslint-disable-next-line @typescript-eslint/camelcase
