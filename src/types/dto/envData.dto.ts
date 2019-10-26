@@ -1,5 +1,5 @@
 export class EnvDataDto {
   monipiId: string;
   sensorName: string;
-  data: Object;
+  data: Record<string, any>;
 }

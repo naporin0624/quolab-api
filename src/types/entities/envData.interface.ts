@@ -4,5 +4,5 @@ export interface EnvData extends Document {
   _id: string;
   monipiId: string;
   sensorName: string;
-  data: Object;
+  data: Record<string, any>;
 }

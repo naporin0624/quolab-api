@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { EnvDataController } from './env-data.controller';
+import { Test, TestingModule } from "@nestjs/testing";
+import { EnvDataController } from "./env-data.controller";
 
-describe('EnvData Controller', () => {
+describe("EnvData Controller", () => {
   let controller: EnvDataController;
 
   beforeEach(async () => {
@@ -12,7 +12,7 @@ describe('EnvData Controller', () => {
     controller = module.get<EnvDataController>(EnvDataController);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(controller).toBeDefined();
   });
 });
