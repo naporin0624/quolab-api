@@ -6,6 +6,8 @@ import {
   Request,
   Get,
   Delete,
+  HttpStatus,
+  HttpException,
 } from "@nestjs/common";
 import { LabDto } from "../types/dto/Lab.dto";
 import { CreateLabService } from "./create-lab/create-lab.service";
@@ -38,9 +40,15 @@ export class LabController {
   ) {
     const user: User = res.user;
     if (createLabRequestDto.labCode) {
-      return await this.labService.findOneByLabCode(
+      const lab = await this.labService.findOneByLabCode(
         createLabRequestDto.labCode,
       );
+      if (!lab)
+        throw new HttpException(
+          "this code could not find",
+          HttpStatus.NOT_FOUND,
+        );
+      return lab;
     }
     const lab = await this.createLabService.createLab(createLabRequestDto);
     await this.userService.joinLab(user.email, lab._id);
