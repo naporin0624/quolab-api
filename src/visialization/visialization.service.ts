@@ -26,6 +26,9 @@ export class VisializationService {
 
   async getVisiKeyData(userId: string) {
     const keyData = await this.userActivity.fetchNappData(userId);
-    return keyData;
+    return keyData.map(k => ({
+      createdAt: k.createdAt,
+      typeCount: k.data.typeCount,
+    }));
   }
 }
