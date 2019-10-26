@@ -10,8 +10,8 @@ import { RoomModule } from "./room/room.module";
 import { EnvDataModule } from "./env-data/env-data.module";
 import { LoggerMiddleware } from "./middleware/logger.middleware";
 import { UserActivityModule } from "./user-activity/user-activity.module";
-import { VisializationController } from './visialization/visialization.controller';
-import { VisializationModule } from './visialization/visialization.module';
+import { VisializationController } from "./visialization/visialization.controller";
+import { VisializationModule } from "./visialization/visialization.module";
 
 @Module({
   imports: [
