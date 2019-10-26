@@ -11,6 +11,7 @@ import { EnvDataModule } from "./env-data/env-data.module";
 import { LoggerMiddleware } from "./middleware/logger.middleware";
 import { UserActivityModule } from "./user-activity/user-activity.module";
 import { MonipiModule } from './monipi/monipi.module';
+import { VisializationModule } from "./visialization/visialization.module";
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { MonipiModule } from './monipi/monipi.module';
     EnvDataModule,
     UserActivityModule,
     MonipiModule,
+    VisializationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
