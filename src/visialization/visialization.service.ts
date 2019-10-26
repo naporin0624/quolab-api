@@ -31,4 +31,17 @@ export class VisializationService {
       typeCount: k.data.typeCount,
     }));
   }
+
+  async getVisiUseSoftwareData(userId: string) {
+    const data = await this.userActivity.fetchNappData(userId);
+    const uniqueAppNames = this.unique(data.map(k => k.data.appName));
+    return uniqueAppNames.map(a => ({
+      name: a,
+      percentage:
+        (data.filter(d => d.data.appName === a).length * 100) / data.length,
+    }));
+  }
+  private unique(l) {
+    return l.filter((x, i, self) => self.indexOf(x) === i);
+  }
 }
