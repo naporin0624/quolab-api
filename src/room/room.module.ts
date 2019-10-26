@@ -4,6 +4,7 @@ import { RoomController } from "./room.controller";
 import { CreateRoomService } from "./create-room/create-room.service";
 import { RoomSchema } from "../types/schemas/room.schemas";
 import { UserModule } from "../user/user.module";
+import { RoomService } from './room.service';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { UserModule } from "../user/user.module";
     UserModule,
   ],
   controllers: [RoomController],
-  providers: [CreateRoomService],
+  providers: [CreateRoomService, RoomService],
 })
 export class RoomModule {}
