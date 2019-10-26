@@ -5,6 +5,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { PlaygroundModule } from "./playground/playground.module";
 import { LabModule } from "./lab/lab.module";
 import { RoomModule } from './room/room.module';
+import { EnvDataModule } from './env-data/env-data.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { RoomModule } from './room/room.module';
     PlaygroundModule,
     LabModule,
     RoomModule,
+    EnvDataModule,
   ],
   controllers: [AppController],
   providers: [AppService],
