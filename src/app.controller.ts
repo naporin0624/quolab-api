@@ -42,7 +42,7 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard("local"))
-  @Post("siginin")
+  @Post("signin")
   async login(@Body() userDto: UserDto) {
     return this.authService.login(userDto);
   }
