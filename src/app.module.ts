@@ -10,6 +10,7 @@ import { RoomModule } from "./room/room.module";
 import { EnvDataModule } from "./env-data/env-data.module";
 import { LoggerMiddleware } from "./middleware/logger.middleware";
 import { UserActivityModule } from "./user-activity/user-activity.module";
+import { MonipiModule } from './monipi/monipi.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UserActivityModule } from "./user-activity/user-activity.module";
     RoomModule,
     EnvDataModule,
     UserActivityModule,
+    MonipiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
