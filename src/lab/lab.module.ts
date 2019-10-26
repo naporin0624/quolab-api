@@ -5,6 +5,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { PlaygroundSchema } from "../types/schemas/playground.schemas";
 import { LabSchema } from "../types/schemas/lab.schemas";
 import { UserModule } from "../user/user.module";
+import { LabService } from "./lab.service";
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { UserModule } from "../user/user.module";
     ]),
   ],
   controllers: [LabController],
-  providers: [CreateLabService],
+  providers: [CreateLabService, LabService],
 })
 export class LabModule {}
