@@ -12,6 +12,8 @@ export class CreateLabService {
   ) {}
 
   createLab(createLabRequestDto: CreateLabRequestDto) {
+    const labCode = Math.random().toString(32).substring(2)
+    createLabRequestDto.labCode = labCode
     const createdLab = new this.labModel(createLabRequestDto);
     return createdLab.save();
   }
