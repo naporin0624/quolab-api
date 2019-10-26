@@ -1,4 +1,4 @@
-import { Module, MiddlewareConsumer } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { MongooseModule } from "@nestjs/mongoose";
@@ -8,7 +8,6 @@ import { UserModule } from "./user/user.module";
 import { AuthModule } from "./auth/auth.module";
 import { RoomModule } from "./room/room.module";
 import { EnvDataModule } from "./env-data/env-data.module";
-import { CorsMiddleware } from "./middleware/cors.middleware";
 
 @Module({
   imports: [
@@ -31,8 +30,4 @@ import { CorsMiddleware } from "./middleware/cors.middleware";
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CorsMiddleware).forRoutes("/*");
-  }
-}
+export class AppModule {}
