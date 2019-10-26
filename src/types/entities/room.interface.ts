@@ -5,4 +5,5 @@ export interface Room extends Document {
   name: string;
   labId: string;
   createdAt: Date;
+  monipiId: string;
 }

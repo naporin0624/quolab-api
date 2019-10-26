@@ -10,4 +10,14 @@ export class RoomService {
   async findByLabId(labId: string) {
     return this.roomModel.find({ labId })
   }
+
+  async findByRoomId(roomId: string) {
+    return this.roomModel.findById(roomId)
+  }
+
+  async updateRoomMonipi(roomData: Room, monipiId: string) {
+    roomData.monipiId = monipiId
+    const updatedRoom = await roomData.save()
+    return updatedRoom
+  }
 }

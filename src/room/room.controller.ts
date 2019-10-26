@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseGuards, Request, HttpStatus, HttpException } from "@nestjs/common";
+import { Controller, Get, Post, Put, Body, UseGuards, Request, HttpStatus, HttpException } from "@nestjs/common";
 import { CreateRoomService } from "./create-room/create-room.service";
 import { UserService } from "../user/user.service";
 import { RoomDto } from "../types/dto/room.dto";
@@ -32,5 +32,18 @@ export class RoomController {
     }
 
     return this.roomService.findByLabId(user.labId);
+  }
+
+  @UseGuards(AuthGuard("jwt"))
+  @Put()
+  async updateRoomMonipi(@Body() roomDto: Partial<RoomDto>) {
+    const roomData = await this.roomService.findByRoomId(roomDto._id)
+    if (!roomData) {
+      throw new HttpException(
+        `not exist`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return this.roomService.updateRoomMonipi(roomData, roomDto.monipiId);
   }
 }
