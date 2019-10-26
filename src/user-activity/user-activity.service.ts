@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { UserActivityData } from "src/types/entities/userActivityData.interface";
+import { subHours } from "date-fns";
 
 @Injectable()
 export class UserActivityService {
@@ -9,4 +10,24 @@ export class UserActivityService {
     @InjectModel("user-activity")
     private readonly userActivityModel: Model<UserActivityData>,
   ) {}
+
+  async fetchBrowsingData(
+    userId: string,
+    startTime = subHours(new Date(), 6),
+    endTime = new Date(),
+  ) {
+    console.log(userId);
+    return this.userActivityModel.aggregate([
+      {
+        $match: {
+          activityName: "browsing",
+          userId: userId,
+          createdAt: {
+            $gte: startTime,
+            $lt: endTime,
+          },
+        },
+      },
+    ]);
+  }
 }

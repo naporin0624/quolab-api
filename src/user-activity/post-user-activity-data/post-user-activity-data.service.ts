@@ -13,7 +13,7 @@ export class PostUserActivityDataService {
     private readonly userActivityDataModel: Model<UserActivityData>,
   ) {}
 
-  postUserActivityData(
+  async postUserActivityData(
     userActivityData: Partial<UserActivityDataDto>,
     user: User,
   ) {
@@ -21,6 +21,6 @@ export class PostUserActivityDataService {
     const createdUserActivityData = new this.userActivityDataModel(
       userActivityData,
     );
-    return createdUserActivityData.save();
+    return await createdUserActivityData.save();
   }
 }
