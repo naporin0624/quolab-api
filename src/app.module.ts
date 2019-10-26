@@ -4,6 +4,8 @@ import { AppService } from "./app.service";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PlaygroundModule } from "./playground/playground.module";
 import { LabModule } from "./lab/lab.module";
+import { UserModule } from "./user/user.module";
+import { AuthModule } from "./auth/auth.module";
 import { RoomModule } from './room/room.module';
 import { EnvDataModule } from './env-data/env-data.module';
 
@@ -20,6 +22,8 @@ import { EnvDataModule } from './env-data/env-data.module';
     ),
     PlaygroundModule,
     LabModule,
+    UserModule,
+    AuthModule,
     RoomModule,
     EnvDataModule,
   ],

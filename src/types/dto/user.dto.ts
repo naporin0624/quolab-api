@@ -1,5 +1,7 @@
 export class UserDto {
-  readonly name: string;
+  readonly _id: string;
+  readonly email: string;
+  readonly password: string;
 
-  createdAt?: Date;
+  readonly createdAt?: Date;
 }

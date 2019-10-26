@@ -1,6 +1,9 @@
 import { Document } from "mongoose";
 
 export interface User extends Document {
-  name: string;
+  _id: string;
+  email: string;
+  password: string;
+
   createdAt: Date;
 }
