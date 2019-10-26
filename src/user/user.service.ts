@@ -9,12 +9,12 @@ import { InjectModel } from "@nestjs/mongoose";
 export class UserService {
   constructor(@InjectModel("user") private readonly userModel: Model<User>) {}
 
-  async isExist(name: string) {
-    return this.userModel.exists({ name });
+  async isExist(email: string) {
+    return this.userModel.exists({ email });
   }
 
-  async findOne(name: string) {
-    return this.userModel.findOne({ name });
+  async findOne(email: string) {
+    return this.userModel.findOne({ email });
   }
 
   async create(createUserDto: Partial<UserDto>) {

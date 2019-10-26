@@ -31,9 +31,9 @@ export class AppController {
 
   @Post("signup")
   async signin(@Body() createUserDto: Partial<UserDto>) {
-    if (await this.userService.isExist(createUserDto.name)) {
+    if (await this.userService.isExist(createUserDto.email)) {
       throw new HttpException(
-        `${createUserDto.name} is aleady exist`,
+        `${createUserDto.email} is aleady exist`,
         HttpStatus.CONFLICT,
       );
     }
@@ -50,7 +50,6 @@ export class AppController {
   @UseGuards(AuthGuard("jwt"))
   @Get("me")
   getProfile(@Request() req: any) {
-    console.log(req.user);
-    return 1;
+    return req.user;
   }
 }

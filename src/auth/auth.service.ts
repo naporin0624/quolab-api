@@ -12,8 +12,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string) {
-    const user: User = await this.userService.findOne(username);
+  async validateUser(email: string, pass: string) {
+    const user: User = await this.userService.findOne(email);
     if (user && compareSync(pass, user.password)) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   async login(user: UserDto) {
-    const payload = { name: user.name, sub: user._id };
+    const payload = { email: user.email, sub: user._id };
     return {
       // eslint-disable-next-line @typescript-eslint/camelcase
       access_token: this.jwtService.sign(payload),
