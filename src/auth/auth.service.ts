@@ -17,7 +17,6 @@ export class AuthService {
     if (user && compareSync(pass, user.password)) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
-      console.log(result);
       return result;
     }
     return null;
