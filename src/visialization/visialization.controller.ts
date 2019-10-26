@@ -20,4 +20,11 @@ export class VisializationController {
     const user: User = res.user;
     return this.visializationService.getVisiKeyData(user.id);
   }
+
+  @UseGuards(AuthGuard("jwt"))
+  @Get("software")
+  async software(@Request() res: any) {
+    const user: User = res.user;
+    return this.visializationService.getVisiUseSoftwareData(user.id);
+  }
 }
