@@ -12,6 +12,7 @@ import { LoggerMiddleware } from "./middleware/logger.middleware";
 import { UserActivityModule } from "./user-activity/user-activity.module";
 import { MonipiModule } from './monipi/monipi.module';
 import { VisializationModule } from "./visialization/visialization.module";
+import { SlackConfigModule } from './slack-config/slack-config.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { VisializationModule } from "./visialization/visialization.module";
     UserActivityModule,
     MonipiModule,
     VisializationModule,
+    SlackConfigModule,
   ],
   controllers: [AppController],
   providers: [AppService],
