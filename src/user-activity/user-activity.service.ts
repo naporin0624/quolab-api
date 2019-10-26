@@ -29,4 +29,23 @@ export class UserActivityService {
       },
     ]);
   }
+
+  async fetchNappData(
+    userId: string,
+    startTime = subHours(new Date(), 6),
+    endTime = new Date(),
+  ) {
+    return this.userActivityModel.aggregate([
+      {
+        $match: {
+          activityName: "KeyCountAndAppName",
+          userId: userId,
+          createdAt: {
+            $gte: startTime,
+            $lt: endTime,
+          },
+        },
+      },
+    ]);
+  }
 }

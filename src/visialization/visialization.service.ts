@@ -23,4 +23,12 @@ export class VisializationService {
       })
       .filter(activity => activity.url && activity.title);
   }
+
+  async getVisiKeyData(userId: string) {
+    const keyData = await this.userActivity.fetchNappData(userId);
+    return keyData.map(k => ({
+      createdAt: k.createdAt,
+      typeCount: k.data.typeCount,
+    }));
+  }
 }
