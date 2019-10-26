@@ -29,7 +29,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post("signin")
+  @Post("signup")
   async signin(@Body() createUserDto: Partial<UserDto>) {
     if (await this.userService.isExist(createUserDto.name)) {
       throw new HttpException(
@@ -42,7 +42,7 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard("local"))
-  @Post("login")
+  @Post("siginin")
   async login(@Body() userDto: UserDto) {
     return this.authService.login(userDto);
   }
