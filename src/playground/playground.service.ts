@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User } from "../types/entities/user.interface";
-import { CreateUserDto } from "../types/requestDto/user.dto";
+import { UserDto } from "../types/dto/user.dto";
 
 @Injectable()
 export class PlaygroundService {
@@ -16,7 +16,7 @@ export class PlaygroundService {
   async findOne(name: string) {
     return this.userModel.find().where({ name });
   }
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: Partial<UserDto>) {
     const createUser = new this.userModel(createUserDto);
     return createUser.save();
   }

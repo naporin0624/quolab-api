@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
 import { PlaygroundService } from "./playground.service";
-import { CreateUserDto } from "../types/requestDto/user.dto";
+import { UserDto } from "../types/dto/user.dto";
 
 @Controller("playground")
 export class PlaygroundController {
@@ -17,7 +17,7 @@ export class PlaygroundController {
   }
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: Partial<UserDto>) {
     return this.playgroundService.create(createUserDto);
   }
 

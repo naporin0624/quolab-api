@@ -1,4 +1,4 @@
-export class CreateLabRequestDto {
+export class LabDto {
   name: string;
   labCode?: string;
 }
