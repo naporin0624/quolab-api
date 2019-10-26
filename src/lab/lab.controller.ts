@@ -43,11 +43,13 @@ export class LabController {
       const lab = await this.labService.findOneByLabCode(
         createLabRequestDto.labCode,
       );
-      if (!lab)
+      if (!lab) {
         throw new HttpException(
           "this code could not find",
           HttpStatus.NOT_FOUND,
         );
+      }
+      await this.userService.joinLab(user.email, lab._id);
       return lab;
     }
     const lab = await this.createLabService.createLab(createLabRequestDto);
