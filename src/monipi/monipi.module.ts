@@ -6,6 +6,7 @@ import { MonipiService } from './monipi.service';
 
 import { MonipiSchema} from '../types/schemas/monipi.schemas'
 import { LabModule } from '../lab/lab.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { LabModule } from '../lab/lab.module';
         schema: MonipiSchema,
       },
     ]),
-    LabModule
+    LabModule,
+    UserModule
   ],
   controllers: [MonipiController],
   providers: [CreateMonipiService, MonipiService]
