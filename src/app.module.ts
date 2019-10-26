@@ -10,6 +10,7 @@ import { RoomModule } from "./room/room.module";
 import { EnvDataModule } from "./env-data/env-data.module";
 import { LoggerMiddleware } from "./middleware/logger.middleware";
 import { UserActivityModule } from "./user-activity/user-activity.module";
+import { VisializationModule } from "./visialization/visialization.module";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UserActivityModule } from "./user-activity/user-activity.module";
     RoomModule,
     EnvDataModule,
     UserActivityModule,
+    VisializationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
