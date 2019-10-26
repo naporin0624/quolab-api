@@ -10,4 +10,8 @@ export class LabService {
   async findOne(_id: string) {
     return this.labModel.findOne({ _id });
   }
+
+  async findOneByLabCode(labCode: string) {
+    return this.labModel.findOne({ labCode });
+  }
 }

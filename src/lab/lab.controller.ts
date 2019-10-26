@@ -37,7 +37,11 @@ export class LabController {
     @Body() createLabRequestDto: Partial<LabDto>,
   ) {
     const user: User = res.user;
-    console.log(res.user);
+    if (createLabRequestDto.labCode) {
+      return await this.labService.findOneByLabCode(
+        createLabRequestDto.labCode,
+      );
+    }
     const lab = await this.createLabService.createLab(createLabRequestDto);
     await this.userService.joinLab(user.email, lab._id);
     return lab;
