@@ -10,8 +10,8 @@ export class PostDataService {
     @InjectModel("env-data") private readonly envDataModel: Model<EnvData>,
   ) {}
 
-  postData(envDataDto: Partial<EnvDataDto>) {
+  async postData(envDataDto: Partial<EnvDataDto>) {
     const postedData = new this.envDataModel(envDataDto);
-    return postedData.save();
+    return await postedData.save();
   }
 }
