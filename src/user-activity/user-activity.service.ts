@@ -16,7 +16,6 @@ export class UserActivityService {
     startTime = subHours(new Date(), 6),
     endTime = new Date(),
   ) {
-    console.log(userId);
     return this.userActivityModel.aggregate([
       {
         $match: {
