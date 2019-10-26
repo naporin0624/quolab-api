@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
 import { PlaygroundService } from "./playground.service";
-import { CreateUserDto } from "./dto/user.dto";
+import { CreateUserDto } from "../types/requestDto/user.dto";
 
 @Controller("playground")
 export class PlaygroundController {
