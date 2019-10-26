@@ -5,11 +5,12 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && webpack -c webpack.config.prod",
-    "build:watch": "webpack -c webpack.config.dev -w",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "nodemon dist/server.js",
-    "start:prod": "node dist/server.js",
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
+    "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
+    "start:prod": "node dist/main.js",
     "lint": "eslint src --ext .ts",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -22,12 +23,10 @@
     "@nestjs/core": "^6.0.0",
     "@nestjs/mongoose": "^6.1.2",
     "@nestjs/platform-express": "^6.0.0",
-    "merge": "^1.2.1",
     "mongoose": "^5.7.7",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
-    "rxjs": "^6.3.3",
-    "webpack": "^4.41.2"
+    "rxjs": "^6.3.3"
   },
   "devDependencies": {
     "@nestjs/testing": "6.1.1",
@@ -45,14 +44,11 @@
     "prettier": "^1.18.2",
     "supertest": "4.0.2",
     "ts-jest": "24.0.2",
-    "ts-loader": "^6.2.1",
     "ts-node": "8.1.0",
     "tsc-watch": "2.2.1",
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
-    "typescript": "3.4.3",
-    "webpack-cli": "^3.3.9",
-    "webpack-node-externals": "^1.7.2"
+    "typescript": "3.4.3"
   },
   "jest": {
     "moduleFileExtensions": [
