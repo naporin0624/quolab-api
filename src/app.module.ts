@@ -9,6 +9,8 @@ import { AuthModule } from "./auth/auth.module";
 import { RoomModule } from "./room/room.module";
 import { EnvDataModule } from "./env-data/env-data.module";
 import { LoggerMiddleware } from "./middleware/logger.middleware";
+import { UserActivityModule } from './user-activity/user-activity.module';
+
 
 @Module({
   imports: [
@@ -27,6 +29,7 @@ import { LoggerMiddleware } from "./middleware/logger.middleware";
     AuthModule,
     RoomModule,
     EnvDataModule,
+    UserActivityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
