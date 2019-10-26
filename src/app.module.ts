@@ -3,6 +3,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { MongooseModule } from "@nestjs/mongoose";
 import { PlaygroundModule } from "./playground/playground.module";
+import { LabModule } from './lab/lab.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { PlaygroundModule } from "./playground/playground.module";
       },
     ),
     PlaygroundModule,
+    LabModule,
   ],
   controllers: [AppController],
   providers: [AppService],
