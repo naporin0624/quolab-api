@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { PostUserActivityDataService } from './post-user-activity-data.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { PostUserActivityDataService } from "./post-user-activity-data.service";
 
-describe('PostUserActivityDataService', () => {
+describe("PostUserActivityDataService", () => {
   let service: PostUserActivityDataService;
 
   beforeEach(async () => {
@@ -9,10 +9,12 @@ describe('PostUserActivityDataService', () => {
       providers: [PostUserActivityDataService],
     }).compile();
 
-    service = module.get<PostUserActivityDataService>(PostUserActivityDataService);
+    service = module.get<PostUserActivityDataService>(
+      PostUserActivityDataService,
+    );
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(service).toBeDefined();
   });
 });

@@ -13,7 +13,7 @@ import { UserModule } from "../user/user.module";
         schema: RoomSchema,
       },
     ]),
-    UserModule
+    UserModule,
   ],
   controllers: [RoomController],
   providers: [CreateRoomService],

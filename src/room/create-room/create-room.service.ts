@@ -4,7 +4,7 @@ import { InjectModel } from "@nestjs/mongoose";
 
 import { Room } from "../../types/entities/room.interface";
 import { RoomDto } from "../../types/dto/room.dto";
-import { User} from '../../types/entities/user.interface'
+import { User } from "../../types/entities/user.interface";
 @Injectable()
 export class CreateRoomService {
   constructor(@InjectModel("room") private readonly roomModel: Model<Room>) {}

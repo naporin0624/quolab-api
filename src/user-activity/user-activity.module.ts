@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 
-import { UserActivityController } from './user-activity.controller';
-import { PostUserActivityDataService } from './post-user-activity-data/post-user-activity-data.service';
-import { UserActivitySchema} from '../types/schemas/userActibity.schemas'
+import { UserActivityController } from "./user-activity.controller";
+import { PostUserActivityDataService } from "./post-user-activity-data/post-user-activity-data.service";
+import { UserActivitySchema } from "../types/schemas/userActibity.schemas";
 
 @Module({
   imports: [
@@ -15,6 +15,6 @@ import { UserActivitySchema} from '../types/schemas/userActibity.schemas'
     ]),
   ],
   controllers: [UserActivityController],
-  providers: [PostUserActivityDataService]
+  providers: [PostUserActivityDataService],
 })
 export class UserActivityModule {}

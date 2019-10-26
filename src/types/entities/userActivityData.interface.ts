@@ -4,6 +4,6 @@ export interface UserActivityData extends Document {
   _id: string;
   userId: string;
   activityName: string;
-  data: Object;
+  data: Record<string, any>;
   createdAt: Date;
 }
