@@ -31,4 +31,11 @@ export class UserService {
     user.save();
     return user;
   }
+  async leaveLab(email: string) {
+    const user = await this.findOne(email);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { labId, ...leaveLabUser } = user;
+    leaveLabUser.save();
+    return leaveLabUser;
+  }
 }
