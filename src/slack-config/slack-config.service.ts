@@ -1,4 +1,27 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+import { SlackConfig } from '../types/entities/slackConfig.interface'
+import { SlackConfigDto } from '../types/dto/slackConfig.dto';
 
 @Injectable()
-export class SlackConfigService {}
+export class SlackConfigService {
+  constructor(@InjectModel('slack-config') private readonly slackConfigModel: Model<SlackConfig>) {}
+
+  async findOneByLabId(id: string) {
+    return this.slackConfigModel.findOne({ labId: id })
+  }
+  async update(slackConfigDto: Partial<SlackConfigDto>, labId: string) {
+    const slackConfig = await this.findOneByLabId(labId)
+    if (!slackConfigDto) {
+      // register
+      slackConfigDto.labId = labId
+      return await new this.slackConfigModel(slackConfigDto).save()
+    }
+
+    slackConfig.url = slackConfigDto.url
+    slackConfig.channel = slackConfigDto.channel
+    return await slackConfig.save()
+  }
+}

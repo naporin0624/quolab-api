@@ -1,15 +1,18 @@
-import { Controller, UseGuards, Request, Post } from '@nestjs/common';
+import { Controller, UseGuards, Request, Post, Body } from '@nestjs/common';
 import { SlackConfigService } from './slack-config.service';
 import { AuthGuard } from '@nestjs/passport';
-import { SlackConfigDto } from '@/types/dto/slackConfig.dto';
+import { SlackConfigDto } from '../types/dto/slackConfig.dto';
+import { UserService } from '../user/user.service';
 
 @Controller('slack-config')
 export class SlackConfigController {
-  constructor(private readonly slackConfigService: SlackConfigService){}
+  constructor(private readonly slackConfigService: SlackConfigService, private readonly userService: UserService){}
 
-  @UseGuards(AuthGuard('jwn'))
+  @UseGuards(AuthGuard('jwt'))
   @Post()
-  async registerSlackConfig(@Request() slackConfigDto: SlackConfigDto){
-    return null
+  async registerSlackConfig(@Body() slackConfigDto: Partial<SlackConfigDto>, @Request() req: any){
+    const user = await this.userService.findOne(req.user.email)
+    
+    return await this.slackConfigService.update(slackConfigDto, user.labId)
   }
 }
