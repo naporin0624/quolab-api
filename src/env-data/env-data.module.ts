@@ -4,6 +4,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { EnvDataController } from "./env-data.controller";
 import { PostDataService } from "./post-data/post-data.service";
 import { EnvDataSchema } from "../types/schemas/env_data.schemas";
+import { EnvDataService } from "./env-data.service";
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { EnvDataSchema } from "../types/schemas/env_data.schemas";
     ]),
   ],
   controllers: [EnvDataController],
-  providers: [PostDataService],
+  providers: [PostDataService, EnvDataService],
+  exports: [EnvDataService],
 })
 export class EnvDataModule {}

@@ -2,12 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { UserActivityService } from "../user-activity/user-activity.service";
 import { addHours } from "date-fns";
+import { EnvDataService } from "../env-data/env-data.service";
 
 @Injectable()
 export class VisializationService {
   constructor(
     private readonly userService: UserService,
     private readonly userActivity: UserActivityService,
+    private readonly envDataService: EnvDataService,
   ) {}
 
   async getVisiBrowsingData(userId: string) {
@@ -40,6 +42,11 @@ export class VisializationService {
       percentage:
         (data.filter(d => d.data.appName === a).length * 100) / data.length,
     }));
+  }
+
+  async getVisiEnvData(monipi: string) {
+    const data = await this.envDataService.fetchEnvData(monipi);
+    return data;
   }
   private unique(l) {
     return l.filter((x, i, self) => self.indexOf(x) === i);
