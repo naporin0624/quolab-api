@@ -20,6 +20,7 @@ export class UserActivityService {
       {
         $match: {
           activityName: "browsing",
+          "data.url": { $ne: undefined },
           userId: userId,
           createdAt: {
             $gte: startTime,

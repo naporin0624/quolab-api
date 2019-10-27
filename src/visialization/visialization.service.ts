@@ -14,16 +14,14 @@ export class VisializationService {
 
   async getVisiBrowsingData(userId: string) {
     const browsingData = await this.userActivity.fetchBrowsingData(userId);
-    return browsingData
-      .map(activity => {
-        return {
-          createdAt: addHours(activity.createdAt, 9),
-          url: activity.data.url,
-          title: activity.data.title,
-          domain: activity.data.url && new URL(activity.data.url).host,
-        };
-      })
-      .filter(activity => activity.url && activity.title);
+    return browsingData.map(activity => {
+      return {
+        createdAt: addHours(activity.createdAt, 9),
+        url: activity.data.url,
+        title: activity.data.title,
+        domain: new URL(activity.data.url).host,
+      };
+    });
   }
 
   async getVisiKeyData(userId: string) {
