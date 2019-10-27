@@ -17,7 +17,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "notify": "ts-node -r tsconfig-paths/register src/batch/slack_notifier.ts"
+    "notify": "ts-node src/batch/slack_notifier.ts"
   },
   "dependencies": {
     "@nestjs/common": "^6.0.0",
