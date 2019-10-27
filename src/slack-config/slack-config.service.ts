@@ -24,4 +24,12 @@ export class SlackConfigService {
     slackConfig.channel = slackConfigDto.channel
     return await slackConfig.save()
   }
+
+  async get() {
+    var query = {'$and':[
+      {url:{$exists: true}}, //nameフィールドがn0bisuke以外
+      {channel:{$exists: true}}, //nameフィールドがotukutun以外
+  ]};
+    return this.slackConfigModel.find(query,{},{}, null);
+  }
 }
