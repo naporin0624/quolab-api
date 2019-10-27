@@ -1,4 +1,4 @@
-import { Controller, UseGuards, Request, Post, Body } from '@nestjs/common';
+import { Controller, UseGuards, Request, Post, Body, Get } from '@nestjs/common';
 import { SlackConfigService } from './slack-config.service';
 import { AuthGuard } from '@nestjs/passport';
 import { SlackConfigDto } from '../types/dto/slackConfig.dto';
@@ -14,5 +14,10 @@ export class SlackConfigController {
     const user = await this.userService.findOne(req.user.email)
     
     return await this.slackConfigService.update(slackConfigDto, user.labId)
+  }
+
+  @Get()
+  async getUrls() {
+    return await this.slackConfigService.get()
   }
 }
