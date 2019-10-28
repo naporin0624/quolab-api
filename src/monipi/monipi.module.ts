@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { MonipiController } from './monipi.controller';
-import { CreateMonipiService } from './create-monipi/create-monipi.service';
-import { MonipiService } from './monipi.service';
+import { MonipiController } from "./monipi.controller";
+import { CreateMonipiService } from "./create-monipi/create-monipi.service";
+import { MonipiService } from "./monipi.service";
 
-import { MonipiSchema} from '../types/schemas/monipi.schemas'
-import { LabModule } from '../lab/lab.module';
-import { UserModule } from '../user/user.module';
+import { MonipiSchema } from "../types/schemas/monipi.schemas";
+import { LabModule } from "../lab/lab.module";
+import { UserModule } from "../user/user.module";
 
 @Module({
   imports: [
@@ -17,9 +17,9 @@ import { UserModule } from '../user/user.module';
       },
     ]),
     LabModule,
-    UserModule
+    UserModule,
   ],
   controllers: [MonipiController],
-  providers: [CreateMonipiService, MonipiService]
+  providers: [CreateMonipiService, MonipiService],
 })
 export class MonipiModule {}

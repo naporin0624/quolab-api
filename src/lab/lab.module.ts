@@ -23,6 +23,6 @@ import { LabService } from "./lab.service";
   ],
   controllers: [LabController],
   providers: [CreateLabService, LabService],
-  exports: [LabService]
+  exports: [LabService],
 })
 export class LabModule {}

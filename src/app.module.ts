@@ -10,9 +10,9 @@ import { RoomModule } from "./room/room.module";
 import { EnvDataModule } from "./env-data/env-data.module";
 import { LoggerMiddleware } from "./middleware/logger.middleware";
 import { UserActivityModule } from "./user-activity/user-activity.module";
-import { MonipiModule } from './monipi/monipi.module';
+import { MonipiModule } from "./monipi/monipi.module";
 import { VisializationModule } from "./visialization/visialization.module";
-import { SlackConfigModule } from './slack-config/slack-config.module';
+import { SlackConfigModule } from "./slack-config/slack-config.module";
 
 @Module({
   imports: [
