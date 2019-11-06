@@ -19,9 +19,7 @@ export class PostUserActivityDataService {
   ) {
     if (
       userActivityData.category &&
-      !["writing", "survey", "implementation", "break"].includes(
-        userActivityData.category,
-      )
+      this.validateActivityCategory(userActivityData.category)
     ) {
       throw new HttpException(`cagegory is not ok`, HttpStatus.BAD_REQUEST);
     }
@@ -31,5 +29,9 @@ export class PostUserActivityDataService {
       userActivityData,
     );
     return await createdUserActivityData.save();
+  }
+
+  private validateActivityCategory(category: string) {
+    return !["writing", "survey", "implementation", "break"].includes(category);
   }
 }
