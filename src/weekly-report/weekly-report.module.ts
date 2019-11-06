@@ -5,7 +5,7 @@ import { WeeklyReportService } from "./weekly-report.service";
 import { EnvDataModule } from "../env-data/env-data.module";
 import { LabModule } from "../lab/lab.module";
 import { MonipiModule } from "../monipi/monipi.module";
-import { WeeklyReportController } from './weekly-report.controller';
+import { WeeklyReportController } from "./weekly-report.controller";
 
 @Module({
   imports: [

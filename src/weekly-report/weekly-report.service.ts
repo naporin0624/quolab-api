@@ -18,23 +18,31 @@ export class WeeklyReportService {
   ) {}
 
   async weeklyDataList(user: User) {
-    const [startTime, endTime] = [new Date(), subDays(new Date(), 7)]
+    const [startTime, endTime] = [new Date(), subDays(new Date(), 7)];
 
     const lab = await this.labService.findOne(user.labId);
-    if (!lab) return {}
+    if (!lab) return {};
     const monipiList = await this.monipiService.findByLabId(lab._id);
     const browsingData = this.userActivityService.fetchBrowsingData(
       user._id,
       startTime,
-      endTime
+      endTime,
     );
-    const nappData = this.userActivityService.fetchNappData(user._id, startTime, endTime);
-    const envDataList = Promise.all(monipiList.map(monipi => this.envDataService.fetchEnvData(monipi._id, startTime, endTime))) 
+    const nappData = this.userActivityService.fetchNappData(
+      user._id,
+      startTime,
+      endTime,
+    );
+    const envDataList = Promise.all(
+      monipiList.map(monipi =>
+        this.envDataService.fetchEnvData(monipi._id, startTime, endTime),
+      ),
+    );
 
     return {
       browsingData,
       nappData,
-      envDataList
+      envDataList,
     };
   }
 }

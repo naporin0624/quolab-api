@@ -18,7 +18,6 @@ export class PlaygroundController {
 
   @Post()
   async create(@Body() createUserDto: Partial<UserDto>) {
-    console.log(createUserDto)
     return this.playgroundService.create(createUserDto);
   }
 
