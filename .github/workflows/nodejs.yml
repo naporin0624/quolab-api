@@ -28,8 +28,10 @@ jobs:
             ${{ matrix.os }}-node-
       - name: Install Dependencies
         run: yarn install
-      - name: npm run lint
+      - name: Lint
         run: yarn lint
+      - name: Build
+        run: yarn build
         env:
           CI: true
           MONGODB_URI: "testtest"
