@@ -1,6 +1,4 @@
-import { Injectable,
-  HttpException,
-  HttpStatus } from "@nestjs/common";
+import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 
@@ -19,13 +17,15 @@ export class PostUserActivityDataService {
     userActivityData: Partial<UserActivityDataDto>,
     user: User,
   ) {
-    if (userActivityData.category && !['writing', 'survey', 'implementation', 'break'].includes(userActivityData.category)) {
-      throw new HttpException(
-        `cagegory is not ok`,
-        HttpStatus.BAD_REQUEST,
-      ); 
+    if (
+      userActivityData.category &&
+      !["writing", "survey", "implementation", "break"].includes(
+        userActivityData.category,
+      )
+    ) {
+      throw new HttpException(`cagegory is not ok`, HttpStatus.BAD_REQUEST);
     }
- 
+
     userActivityData.userId = user.id;
     const createdUserActivityData = new this.userActivityDataModel(
       userActivityData,
