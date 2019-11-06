@@ -38,8 +38,8 @@ export class UserService {
     return user;
   }
 
-  async getUsersByLabId(labId: String) {
-    const users = await this.userModel.find({ labId })
-    return users
+  async getUsersByLabId(labId: string) {
+    const users = await this.userModel.find({ labId });
+    return users;
   }
 }

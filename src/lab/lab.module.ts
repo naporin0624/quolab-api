@@ -7,6 +7,7 @@ import { LabSchema } from "../types/schemas/lab.schemas";
 import { UserModule } from "../user/user.module";
 import { LabService } from "./lab.service";
 import { GetLabMembersService } from "./get-lab-members/get-lab-members.service";
+import { UserActivitySchema } from "../types/schemas/userActibity.schemas";
 
 @Module({
   imports: [
@@ -19,6 +20,10 @@ import { GetLabMembersService } from "./get-lab-members/get-lab-members.service"
       {
         name: "playground",
         schema: PlaygroundSchema,
+      },
+      {
+        name: "user-activity",
+        schema: UserActivitySchema,
       },
     ]),
   ],
