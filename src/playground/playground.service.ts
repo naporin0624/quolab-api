@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User } from "../types/entities/user.interface";
 import { UserDto } from "../types/dto/user.dto";
+import { AssertionError } from "assert";
 
 @Injectable()
 export class PlaygroundService {
@@ -11,7 +12,7 @@ export class PlaygroundService {
   ) {}
 
   async findAll() {
-    return this.userModel.find();
+    return this.userModel.find().batchSize(10);
   }
   async findOne(name: string) {
     return this.userModel.find().where({ name });

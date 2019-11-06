@@ -15,7 +15,7 @@ export class UserActivityService {
     userId: string,
     startTime = subHours(new Date(), 6),
     endTime = new Date(),
-  ) {
+  ): Promise<UserActivityData[]> {
     return this.userActivityModel.aggregate([
       {
         $match: {
@@ -35,7 +35,7 @@ export class UserActivityService {
     userId: string,
     startTime = subHours(new Date(), 6),
     endTime = new Date(),
-  ) {
+  ): Promise<UserActivityData[]> {
     return this.userActivityModel.aggregate([
       {
         $match: {

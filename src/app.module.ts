@@ -14,6 +14,7 @@ import { VisializationModule } from "./visialization/visialization.module";
 import { SlackConfigModule } from "./slack-config/slack-config.module";
 import { ConfigModule } from "./config/config.module";
 import { DatabaseModule } from "./database/database.module";
+import { WeeklyReportModule } from "./weekly-report/weekly-report.module";
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { DatabaseModule } from "./database/database.module";
     MonipiModule,
     VisializationModule,
     SlackConfigModule,
+    WeeklyReportModule,
   ],
   controllers: [AppController],
   providers: [AppService],
