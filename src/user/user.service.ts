@@ -37,4 +37,9 @@ export class UserService {
     await user.save();
     return user;
   }
+
+  async getUsersByLabId(labId: String) {
+    const users = await this.userModel.find({ labId })
+    return users
+  }
 }
