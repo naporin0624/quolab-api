@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { UserActivityData } from "../types/entities/userActivityData.interface";
-import { subHours, subWeeks } from "date-fns";
+import { subHours, startOfWeek } from "date-fns";
 export interface Category {
   survey: number;
   writing: number;
@@ -57,7 +57,7 @@ export class UserActivityService {
   }
 
   async fetchWeeklyCategories(userId: string) {
-    const startTime = subWeeks(new Date(), 1);
+    const startTime = startOfWeek(new Date());
     const endTime = new Date();
 
     const items: UserActivityData[] = await this.userActivityModel.aggregate([
