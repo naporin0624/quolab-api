@@ -9,7 +9,7 @@ async function main() {
     resp.data.forEach(slackConf => {
       axios.post(slackConf.url, {
         text:
-          "今週の活動を振り返ってみよう！\nhttps://qolab-a0324.firebaseapp.com",
+          "今週の活動を振り返ってみよう！\nhttps://qolab-a0324.firebaseapp.com/weekly_reports",
         channel: slackConf.channel,
       });
     });

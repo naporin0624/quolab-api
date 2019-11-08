@@ -108,11 +108,11 @@ export class UserActivityService {
           category,
           createdAt: {
             $gte: startTime,
-            $lt: endTime
-          }
-        }
-      }
-    ])
+            $lt: endTime,
+          },
+        },
+      },
+    ]);
   }
   private surveyComment(score: number) {
     if (score > 70) {

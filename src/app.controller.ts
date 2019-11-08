@@ -57,8 +57,8 @@ export class AppController {
     return user;
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @Put('me')
+  @UseGuards(AuthGuard("jwt"))
+  @Put("me")
   async updateProfile(@Body() userDto: Partial<UserDto>, @Request() req: any) {
     return await this.userService.updateUser(req.user.id, userDto);
   }

@@ -21,8 +21,14 @@ export class WeeklyReportController {
   }
 
   @Get("/:category")
-  async categoryDetail(@Request() req: RequestWithUser, @Param("category") category: string) {
+  async categoryDetail(
+    @Request() req: RequestWithUser,
+    @Param("category") category: string,
+  ) {
     const user = await this.userService.findOne(req.user.email);
-    return this.userActivityService.detailCategory(user._id.toString(), category);
+    return this.userActivityService.detailCategory(
+      user._id.toString(),
+      category,
+    );
   }
 }

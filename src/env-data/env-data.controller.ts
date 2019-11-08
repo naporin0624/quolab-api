@@ -1,4 +1,10 @@
-import { Controller, Post, Body, HttpException, HttpStatus } from "@nestjs/common";
+import {
+  Controller,
+  Post,
+  Body,
+  HttpException,
+  HttpStatus,
+} from "@nestjs/common";
 import axios from "axios";
 import { PostDataService } from "./post-data/post-data.service";
 import { EnvDataDto } from "../types/dto/envData.dto";
@@ -11,18 +17,24 @@ export class RequestParam {
 
 @Controller("env-data")
 export class EnvDataController {
-  constructor(private readonly postDataService: PostDataService, private readonly slackConfigService: SlackConfigService) {}
+  constructor(
+    private readonly postDataService: PostDataService,
+    private readonly slackConfigService: SlackConfigService,
+  ) {}
 
   @Post()
   postData(@Body() envDataDto: Partial<EnvDataDto>) {
     return this.postDataService.postData(envDataDto);
   }
 
-  @Post('alert')
+  @Post("alert")
   async alert(@Body() data: RequestParam) {
-    const slackConf = await this.slackConfigService.findOneByLabId(data.labId)
+    const slackConf = await this.slackConfigService.findOneByLabId(data.labId);
     if (!!slackConf || !!slackConf.url) {
-      throw new HttpException(`your lab config is not good`, HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        `your lab config is not good`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     axios.post(slackConf.url, {
       text: data.message,

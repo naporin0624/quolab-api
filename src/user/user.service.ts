@@ -44,12 +44,12 @@ export class UserService {
   }
 
   async updateUser(userId: string, userDto: Partial<UserDto>) {
-    const user = await this.userModel.findOne({_id: userId})
+    const user = await this.userModel.findOne({ _id: userId });
     if (!user) {
       throw new HttpException(`bad request`, HttpStatus.BAD_REQUEST);
     }
 
-    user.name = userDto.name
-    return await user.save()
+    user.name = userDto.name;
+    return await user.save();
   }
 }
