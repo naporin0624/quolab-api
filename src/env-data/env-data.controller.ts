@@ -30,7 +30,7 @@ export class EnvDataController {
   @Post("alert")
   async alert(@Body() data: RequestParam) {
     const slackConf = await this.slackConfigService.findOneByLabId(data.labId);
-    if (!!slackConf || !!slackConf.url) {
+    if (!slackConf || !slackConf.url) {
       throw new HttpException(
         `your lab config is not good`,
         HttpStatus.BAD_REQUEST,
