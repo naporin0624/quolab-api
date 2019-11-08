@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Request } from "@nestjs/common";
+import { Controller, Get, UseGuards, Request, Param } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { AuthGuard } from "@nestjs/passport";
 import { RequestWithUser } from "../types/";
@@ -18,5 +18,17 @@ export class WeeklyReportController {
   async index(@Request() req: RequestWithUser) {
     const user = await this.userService.findOne(req.user.email);
     return this.userActivityService.fetchWeeklyCategories(user._id.toString());
+  }
+
+  @Get("/:category")
+  async categoryDetail(
+    @Request() req: RequestWithUser,
+    @Param("category") category: string,
+  ) {
+    const user = await this.userService.findOne(req.user.email);
+    return this.userActivityService.detailCategory(
+      user._id.toString(),
+      category,
+    );
   }
 }
