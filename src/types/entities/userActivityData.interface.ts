@@ -6,5 +6,5 @@ export interface UserActivityData extends Document {
   activityName: string;
   data: Record<string, any>;
   createdAt: Date;
-  category: string;
+  category: "survey" | "writing" | "implementation" | "break";
 }
