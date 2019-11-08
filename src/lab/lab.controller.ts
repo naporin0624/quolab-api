@@ -45,7 +45,7 @@ export class LabController {
       const lab = await this.labService.findOneByLabCode(
         createLabRequestDto.labCode,
       );
-      if (!lab) {
+      if (!!lab) {
         throw new HttpException(
           "this code could not find",
           HttpStatus.NOT_FOUND,

@@ -34,7 +34,7 @@ export class MonipiController {
   @Get()
   async getMonipis(@Request() res: any) {
     const user = await this.userService.findOne(res.user.email);
-    if (!user.labId) {
+    if (!!user.labId) {
       throw new HttpException(`please join is lab`, HttpStatus.BAD_REQUEST);
     }
     const monipis = await this.monipiService.findByLabId(user.labId);
