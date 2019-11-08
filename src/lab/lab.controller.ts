@@ -69,6 +69,6 @@ export class LabController {
   @UseGuards(AuthGuard("jwt"))
   @Get("members")
   async getLabMembers(@Request() res: any) {
-    return await this.getLabMembersService.get(res.user.labId);
+    return await this.getLabMembersService.get(res.user);
   }
 }
