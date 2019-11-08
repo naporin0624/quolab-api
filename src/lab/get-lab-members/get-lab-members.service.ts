@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { startOfDay } from "date-fns";
+import { startOfDay, subDays } from "date-fns";
 import { Lab } from "../../types/entities/lab.interface";
 import { UserService } from "../../user/user.service";
 import { UserActivityData } from "../../types/entities/userActivityData.interface";
@@ -25,7 +25,7 @@ export class GetLabMembersService {
               activityName: "KeyCountAndAppName",
               userId: user._id.toString(),
               createdAt: {
-                $gte: startOfDay(new Date()),
+                $gte: subDays(new Date(), 24),
               },
             },
           },
