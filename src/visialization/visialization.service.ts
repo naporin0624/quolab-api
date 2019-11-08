@@ -16,7 +16,7 @@ export class VisializationService {
     const browsingData = await this.userActivity.fetchBrowsingData(userId);
     return browsingData.map(activity => {
       return {
-        createdAt: addHours(activity.createdAt, 9),
+        createdAt: activity.createdAt,
         url: activity.data.url,
         title: activity.data.title,
         domain: new URL(activity.data.url).host,
@@ -27,7 +27,7 @@ export class VisializationService {
   async getVisiKeyData(userId: string) {
     const keyData = await this.userActivity.fetchNappData(userId);
     return keyData.map(k => ({
-      createdAt: addHours(k.createdAt, 9),
+      createdAt: k.createdAt,
       typeCount: k.data.typeCount,
     }));
   }
