@@ -32,6 +32,8 @@ export class PostUserActivityDataService {
   }
 
   private validateActivityCategory(category: string) {
-    return !["writing", "survey", "implementation", "break", "other"].includes(category);
+    return !["writing", "survey", "implementation", "break", "other"].includes(
+      category,
+    );
   }
 }

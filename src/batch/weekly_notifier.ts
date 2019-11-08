@@ -1,8 +1,8 @@
 import axios from "axios";
-import {isFriday} from "date-fns"
+import { isFriday } from "date-fns";
 async function main() {
-  if (!isFriday(new Date)) {
-    return
+  if (!isFriday(new Date())) {
+    return;
   }
   try {
     // const resp = await axios.get('http://localhost:3000/slack-config')
