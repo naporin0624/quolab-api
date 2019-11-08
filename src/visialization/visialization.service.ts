@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { UserActivityService } from "../user-activity/user-activity.service";
-import { addHours } from "date-fns";
 import { EnvDataService } from "../env-data/env-data.service";
 
 @Injectable()
