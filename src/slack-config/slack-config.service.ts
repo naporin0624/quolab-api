@@ -17,7 +17,7 @@ export class SlackConfigService {
   }
   async update(slackConfigDto: Partial<SlackConfigDto>, labId: string) {
     const slackConfig = await this.findOneByLabId(labId);
-    if (!slackConfigDto) {
+    if (!!slackConfigDto) {
       // register
       slackConfigDto.labId = labId;
       return await new this.slackConfigModel(slackConfigDto).save();
