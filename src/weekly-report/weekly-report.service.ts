@@ -5,7 +5,7 @@ import { EnvDataService } from "../env-data/env-data.service";
 import { User } from "../types/entities/user.interface";
 import { LabService } from "../lab/lab.service";
 import { MonipiService } from "../monipi/monipi.service";
-import { subDays } from "date-fns";
+import { subWeeks } from "date-fns";
 
 @Injectable()
 export class WeeklyReportService {
@@ -18,24 +18,30 @@ export class WeeklyReportService {
   ) {}
 
   async weeklyDataList(user: User) {
-    const [startTime, endTime] = [new Date(), subDays(new Date(), 7)];
+    const [startTime, endTime] = [subWeeks(new Date(), 1), new Date()];
 
     const lab = await this.labService.findOne(user.labId);
     if (!lab) return {};
-    const monipiList = await this.monipiService.findByLabId(lab._id);
-    const browsingData = this.userActivityService.fetchBrowsingData(
-      user._id,
+    const monipiList = await this.monipiService.findByLabId(lab._id.toString());
+
+    const browsingData = await this.userActivityService.fetchBrowsingData(
+      user._id.toString(),
       startTime,
       endTime,
     );
-    const nappData = this.userActivityService.fetchNappData(
-      user._id,
+
+    const nappData = await this.userActivityService.fetchNappData(
+      user._id.toString(),
       startTime,
       endTime,
     );
     const envDataList = Promise.all(
       monipiList.map(monipi =>
-        this.envDataService.fetchEnvData(monipi._id, startTime, endTime),
+        this.envDataService.fetchEnvData(
+          monipi._id.toString(),
+          startTime,
+          endTime,
+        ),
       ),
     );
 
