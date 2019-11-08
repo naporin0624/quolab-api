@@ -22,7 +22,7 @@ jobs:
       - name: Cache node_modules
         uses: actions/cache@preview
         with:
-          path: node_modules
+          path: ./node_modules
           key: ${{ matrix.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ matrix.os }}-node-
@@ -33,6 +33,5 @@ jobs:
       - name: Build
         run: yarn build
         env:
-          CI: true
           MONGODB_URI: "testtest"
           SECRET_KEY: "hoge"
