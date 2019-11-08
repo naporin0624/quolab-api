@@ -6,4 +6,5 @@ export const UserSchema = new Schema({
   labId: String,
   createdAt: { type: Date, default: Date.now },
   activity: String,
+  name: String
 });
