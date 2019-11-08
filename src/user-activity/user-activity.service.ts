@@ -97,6 +97,23 @@ export class UserActivityService {
     return { chartData, comments };
   }
 
+  async detailCategory(userId: string, category: string) {
+    const startTime = startOfWeek(new Date());
+    const endTime = new Date();
+
+    return this.userActivityModel.aggregate([
+      {
+        $match: {
+          userId,
+          category,
+          createdAt: {
+            $gte: startTime,
+            $lt: endTime
+          }
+        }
+      }
+    ])
+  }
   private surveyComment(score: number) {
     if (score > 70) {
       return "天才？";
