@@ -30,7 +30,6 @@ export class WeeklyReportService {
       endTime,
     );
 
-
     const nappData = await this.userActivityService.fetchNappData(
       user._id.toString(),
       startTime,
@@ -38,7 +37,11 @@ export class WeeklyReportService {
     );
     const envDataList = Promise.all(
       monipiList.map(monipi =>
-        this.envDataService.fetchEnvData(monipi._id.toString(), startTime, endTime),
+        this.envDataService.fetchEnvData(
+          monipi._id.toString(),
+          startTime,
+          endTime,
+        ),
       ),
     );
 
