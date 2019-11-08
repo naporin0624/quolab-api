@@ -1,10 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { startOfDay, subDays } from "date-fns";
+import { subHours } from "date-fns";
 import { Lab } from "../../types/entities/lab.interface";
 import { UserService } from "../../user/user.service";
 import { UserActivityData } from "../../types/entities/userActivityData.interface";
+import { UserDto } from "../../types/dto/user.dto";
 
 @Injectable()
 export class GetLabMembersService {
@@ -15,8 +16,9 @@ export class GetLabMembersService {
     private readonly userService: UserService,
   ) {}
 
-  async get(labId: string) {
-    const users: Array<any> = await this.userService.getUsersByLabId(labId);
+  async get(userDto: Partial<UserDto>) {
+    const user = await this.userService.findOne(userDto.email)
+    const users: Array<any> = await this.userService.getUsersByLabId(user.labId);
     const result = await Promise.all(
       users.map(user => {
         return this.userActivityModel.aggregate([
@@ -25,7 +27,7 @@ export class GetLabMembersService {
               activityName: "KeyCountAndAppName",
               userId: user._id.toString(),
               createdAt: {
-                $gte: subDays(new Date(), 24),
+                $gte: subHours(new Date(), 24),
               },
             },
           },
