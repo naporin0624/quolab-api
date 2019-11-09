@@ -27,4 +27,34 @@ export class EnvDataService {
       },
     ]);
   }
+
+  async registeredSensorNames(monipiId: string): Promise<string[]> {
+    return this.envDataModel.aggregate([
+      {
+        $group: {
+          _id: "$sensorName",
+        },
+      },
+    ]);
+  }
+
+  async filterSensorData(
+    monipiId: string,
+    sensorName: string,
+    startTime = subHours(new Date(), 6),
+    endTime = new Date(),
+  ): Promise<EnvData[]> {
+    return this.envDataModel.aggregate([
+      {
+        $match: {
+          monipiId,
+          sensorName,
+          createdAt: {
+            $gte: startTime,
+            $lt: endTime,
+          },
+        },
+      },
+    ]);
+  }
 }
